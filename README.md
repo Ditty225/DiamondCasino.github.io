@@ -223,13 +223,13 @@ function resetCalculator() {
  
 <body style="background-color:grey;">
 	<img src="diamondcasino.png" alt="Company Logo!">
-  <h1>Menu Calculator</h1>
+  <h1>Diamond Casino & Resort Calculator</h1>
   
   <h2>Menu Items</h2>
 
   <div style="margin-bottom: 10px;"></div>
   
-  <h3>Drink Menu</h3>
+  <h3>Drink</h3>
 
   <div style="margin-bottom: 10px;"></div>
   

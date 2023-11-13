@@ -148,7 +148,7 @@
       }
     });
 
-    var commission = (total * 0.05).toFixed(2);
+    var commission = (total * 0.15).toFixed(2);
     var totalWithDiscount = total - discountTotal;
 
     alert('Order submitted!');
@@ -180,7 +180,7 @@
             inline: true
           },
           {
-            name: 'Commission (5%)',
+            name: 'Commission (15%)',
             value: '$' + commission,
             inline: true
           },

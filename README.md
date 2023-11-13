@@ -153,7 +153,7 @@
 
     alert('Order submitted!');
 
-    var discordWebhookURL = 'https://discord.com/api/webhooks/1169866360701067264/BZ3QpnkbDw0xryKGaPNHBqGDcKWcKwJ5z9SZHTD4RsR6oPBoQK9LdSwGFN9sjgeW6TVP';
+    var discordWebhookURL = 'https://discordapp.com/api/webhooks/1173524631177670717/7OulHbdgxQLuS2Qd-SClogA5LwpOmZ_fY9XJ9lxZlNYi4DOZacY5IucqtsMXUCrtoRTm';
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', discordWebhookURL, true);
@@ -222,7 +222,7 @@ function resetCalculator() {
 <div style="margin-bottom: 25px;"></div>
  
 <body style="background-color:grey;">
-	<img src="ottos.png" alt="Company Logo!">
+	<img src="diamondcasino.png" alt="Company Logo!">
   <h1>Menu Calculator</h1>
   
   <h2>Menu Items</h2>

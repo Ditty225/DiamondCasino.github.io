@@ -100,7 +100,7 @@
         var itemPrice = total * 0.3;
         total -= itemPrice;
       } else if (checkbox.value === '-50%') {
-        var itemPrice = total * 0.5;
+        var itemPrice = total * 0.15;
         total -= itemPrice;
       } else {
         total += price * quantity;

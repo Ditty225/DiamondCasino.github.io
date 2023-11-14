@@ -196,6 +196,47 @@
     xhr.send(JSON.stringify(message));
   }
 
+      var xhr = new XMLHttpRequest();
+    xhr.open('POST', googlesheetsWebhookURL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    var message = {
+      content: 'New order!',
+      embeds: [{
+        title: 'Order Details',
+        fields: [
+          {
+            name: 'Name',
+            value: name,
+            inline: true
+          },
+          {
+            name: 'Total',
+            value: '$' + totalWithDiscount.toFixed(2),
+            inline: true
+          },
+          {
+            name: 'Discount Total',
+            value: '$' + discountTotal.toFixed(2),
+            inline: true
+          },
+          {
+            name: 'Commission (15%)',
+            value: '$' + commission,
+            inline: true
+          },
+          {
+            name: 'Ordered Items',
+            value: selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n'),
+            inline: false
+          }
+        ]
+      }]
+    };
+
+    xhr.send(JSON.stringify(message));
+  }
+
 function resetCalculator() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   var quantityInputs = document.querySelectorAll('input[type="number"]');

@@ -1,4 +1,4 @@
-# diamondcasino.github.io
+
 <html>
 <head>
   <title>Menu Calculator</title>

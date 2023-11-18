@@ -113,9 +113,7 @@
     var discount = total * 0.15;
     discountTotalElement.textContent = discount.toFixed(2);
   }
-
-
-    
+  
     function submitOrder() {
     var name = document.getElementById('name').value;
     if (name.trim() === '') {
@@ -330,13 +328,7 @@ function resetCalculator() {
   <span>Commision (15%): $</span>
   <span id="discount-total">0.00</span>
 </div>
-
-
-
-
  
-  
-  
   <div style="margin-bottom: 45px;"></div>
   
 

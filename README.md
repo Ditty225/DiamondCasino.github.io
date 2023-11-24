@@ -267,6 +267,12 @@ function resetCalculator() {
     <label for="Davechoice">The Diamond Cocktail - 150$</label>
     <input type="number" value="1" min="1">
   </div>
+
+  <div>
+    <input type="checkbox" id="Davechoice" value="150$">
+    <label for="Davechoice">Liquid Marijuana Cocktail - 150$</label>
+    <input type="number" value="1" min="1">
+  </div>
   
  <div>
     <input type="checkbox" id="Davechoice" value="150$">

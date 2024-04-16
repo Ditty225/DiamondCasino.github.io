@@ -291,6 +291,13 @@ function resetCalculator() {
   </div>
 
   <div>
+    <input type="checkbox" id="uwueats" value="100$">
+    <label for="Velmachoice">Spare Tire Tots - 100$</label>
+    <input type="number" value="1" min="1">
+    <img src="spare_tire_tots.png" alt="Spare Tire Tots">
+  </div>
+
+  <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Clutch Burger - 225$</label>
     <input type="number" value="1" min="1"> 

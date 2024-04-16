@@ -221,8 +221,8 @@ function resetCalculator() {
 <div style="margin-bottom: 25px;"></div>
  
 <body style="background-color:grey;">
-	<img src="diamondcasino.png" alt="Company Logo!">
-  <h1>Diamond Casino & Resort Calculator</h1>
+	<img src="RexDinerLogo.png" alt="Company Logo!">
+  <h1>Rex's Diner Calculator</h1>
   
   <h2>Menu Items</h2>
 

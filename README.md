@@ -273,13 +273,14 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="100$">
     <label for="Velmachoice">Garage Fries - 100$</label>
     <input type="number" value="1" min="1">
-    #<img src="engine-coolant-ice-tea.png" alt="Garage Fries">
+    #<img src="garage-fries.png" alt="Garage Fries">
   </div>
   
 <div>
     <input type="checkbox" id="uwueats" value="100$">
     <label for="Velmachoice">Piston Poppers - 100$</label>
     <input type="number" value="1" min="1">
+    <img src="piston-poppers.png" alt="Piston Poppers">
   </div>
 
   <div>
@@ -292,8 +293,7 @@ function resetCalculator() {
   <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Clutch Burger - 225$</label>
-    <input type="number" value="1" min="1">
-    <img src="clutch-burger.png" alt="Clutch Burger">	  
+    <input type="number" value="1" min="1"> 
   </div>
 
 <div>
@@ -314,6 +314,7 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Fuel Line Frank - 225$</label>
     <input type="number" value="1" min="1">
+    <img src="fuel-line-frank.png" alt="Fuel Line Frank">
   </div>
 
   <div>
@@ -326,20 +327,37 @@ function resetCalculator() {
 
  <div>
     <input type="checkbox" id="uwueats" value="175$">
-    <label for="Velmachoice">Milkshake Manifold- 175$</label>
+    <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
     <input type="number" value="1" min="1">
+    <img src="chocolate-milkeshake.png" alt="Chocolate Milkshake">
+  </div>
+
+   <div>
+    <input type="checkbox" id="uwueats" value="175$">
+    <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
+    <input type="number" value="1" min="1">
+    <img src="strawberry-milkeshake.png" alt="Strawberry Milkshake">
+  </div>
+
+   <div>
+    <input type="checkbox" id="uwueats" value="175$">
+    <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
+    <input type="number" value="1" min="1">
+    <img src="vanilla-milkeshake.png" alt="Vanilla Milkshake">
   </div>
 
    <div>
     <input type="checkbox" id="uwueats" value="175$">
     <label for="Velmachoice">Wrench Waffles- 175$</label>
     <input type="number" value="1" min="1">
+    <img src="wrench-waffles.png" alt="Wrench Waffles">
   </div>
 
    <div>
     <input type="checkbox" id="uwueats" value="175$">
     <label for="Velmachoice">Battery Boost Brownie Sundae- 175$</label>
     <input type="number" value="1" min="1">
+    <img src="battery-boost-brownie-sundae.png" alt="Battery Boost Brownie Sundae">
   </div>
 
 

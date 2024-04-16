@@ -73,8 +73,8 @@
     }
 	
 	.menu-items div img {
-      width: 25px; /* Adjust the desired width */
-      height: 25px; /* Adjust the desired height */
+      width: 10px; /* Adjust the desired width */
+      height: 10px; /* Adjust the desired height */
       margin-left: 10px; /* Add margin as per your preference */
     }
     {

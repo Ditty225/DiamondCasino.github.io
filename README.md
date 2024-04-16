@@ -236,7 +236,7 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="200$">
     <label for="Velmachoice">Motor Oil Coffee - 200$</label>
     <input type="number" value="1" min="1">
-    <img src="motor-oil-coffee.jpg" alt="Motor Oil Coffee">
+    <img src="motor-oil-coffee.png" alt="Motor Oil Coffee">
   </div>
   
   <div>

@@ -345,6 +345,7 @@ function resetCalculator() {
   <input type="number" value="1" min="1" max="1">
 </div>
 
+
 <div>
     <label for="name">Rex's Employee Name:</label>
     <input type="text" id="name">

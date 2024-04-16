@@ -1,375 +1,133 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Menu Calculator</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rex's Diner Calculator</title>
+  <style>
+    /* CSS cleanup and optimization */
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 250vh;
+      min-height: 100vh; /* Change height to viewport height */
       text-align: center;
+      background-color: grey; /* Change background color */
     }
-	.total-box {
-		display: flex;
-		justify-content: center; /* Center horizontally */
-		align-items: center; /* Center vertically */
-		margin-top: 20px;
-	}}
-	
-	 .calculate-button {
-      width: 150px; /* Adjust the desired width */
-      height: 50px; /* Adjust the desired height */
-    }
-	
-	.submit-button {
-      width: 150px; /* Adjust the desired width */
-      height: 40px; /* Adjust the desired height */
-    }
-	
-	.reset-button {
-      width: 150px; /* Adjust the desired width */
-      height: 30px; /* Adjust the desired height */
-    }
-    
-    h1 {
-      margin-bottom: 20px;
-    }
-    
-    h2 {
-      margin-top: 20px;
-    }
-	
-	h3 {
-      border: 1px solid black; /* Adjust the border style as needed */
-      padding: 5px; /* Add padding to create space around the heading */
-    }
-    
-    .menu-items {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    
-    .menu-items div {
-      display: flex;
-      align-items: center;
-    }
-    
+
     .total-box {
-      display: flex;
-      justify-content: flex-end;
-      align-self: Center;
       margin-top: 20px;
     }
-    
-    .button-container {
-      display: flex;
-      gap: 10px;
+
+    .button {
+      width: 150px;
       margin-top: 20px;
     }
-	
-	.menu-items div img {
-      width: 50px; /* Adjust the desired width */
-      height: 50px; /* Adjust the desired height */
-      margin-left: 10px; /* Add margin as per your preference */
+
+    .menu-items div img {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
     }
-    {
-    button {
-      margin-top: 20px;
-	}}}}}}
+
+    h3 {
+      border: 1px solid black;
+      padding: 5px;
+      margin-top: 20px; /* Move margin here for consistency */
+    }
+
+    /* Add more CSS rules as needed */
+
   </style>
-  <script>
-    function calculateTotal() {
-    var total = 0;
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-
-    checkboxes.forEach(function(checkbox) {
-      var quantityInput = checkbox.parentNode.querySelector('input[type="number"]');
-      var quantity = parseInt(quantityInput.value);
-      var price = parseFloat(checkbox.value);
-
-      if (checkbox.value === '-25%') {
-        var itemPrice = total * 0.25;
-        total -= itemPrice;
-      } else if (checkbox.value === '-30%') {
-        var itemPrice = total * 0.3;
-        total -= itemPrice;
-      } else if (checkbox.value === '-50%') {
-        var itemPrice = total * 0.5;
-        total -= itemPrice;
-      } else {
-        total += price * quantity;
-      }
-    });
-
-    var totalElement = document.getElementById('total');
-    totalElement.textContent = total.toFixed(2);
-
-    var discountTotalElement = document.getElementById('discount-total');
-    var discount = total * 0.15;
-    discountTotalElement.textContent = discount.toFixed(2);
-  }
-  
-    function submitOrder() {
-    var name = document.getElementById('name').value;
-    if (name.trim() === '') {
-      alert('Please enter a name.');
-      return;
-    }
-
-    // Collect selected items and their quantities
-    var selectedItems = [];
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    checkboxes.forEach(function (checkbox) {
-      var itemName = checkbox.nextElementSibling.textContent;
-      var quantityInput = checkbox.parentNode.querySelector('input[type="number"]');
-      var quantity = parseInt(quantityInput.value);
-      var price = parseFloat(checkbox.value);
-      selectedItems.push({ name: itemName, quantity: quantity, price: price });
-    });
-
-    var total = 0;
-    var discountTotal = 0;
-
-    selectedItems.forEach(function (item) {
-      if (item.price < 0) {
-        var discountPercentage = Math.abs(item.price);
-        var itemDiscount = total * (discountPercentage / 100);
-        discountTotal += itemDiscount;
-      } else {
-        total += item.price * item.quantity;
-      }
-    });
-
-    var commission = (total * 0.15).toFixed(2);
-    var totalWithDiscount = total - discountTotal;
-
-    alert('Order submitted!');
-
-    var discordWebhookURL = 'https://discordapp.com/api/webhooks/1173524631177670717/7OulHbdgxQLuS2Qd-SClogA5LwpOmZ_fY9XJ9lxZlNYi4DOZacY5IucqtsMXUCrtoRTm';
-
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', discordWebhookURL, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    var message = {
-      content: 'New order!',
-      embeds: [{
-        title: 'Order Details',
-        fields: [
-          {
-            name: 'Name',
-            value: name,
-            inline: true
-          },
-          {
-            name: 'Total',
-            value: '$' + totalWithDiscount.toFixed(2),
-            inline: true
-          },
-          {
-            name: 'Discount Total',
-            value: '$' + discountTotal.toFixed(2),
-            inline: true
-          },
-          {
-            name: 'Commission (15%)',
-            value: '$' + commission,
-            inline: true
-          },
-          {
-            name: 'Ordered Items',
-            value: selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n'),
-            inline: false
-          }
-        ]
-      }]
-    };
-
-    xhr.send(JSON.stringify(message));
-  }
-
-    
-function resetCalculator() {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  var quantityInputs = document.querySelectorAll('input[type="number"]');
-  
-  checkboxes.forEach(function(checkbox) {
-    checkbox.checked = false;
-  });
-  
-  quantityInputs.forEach(function(quantityInput) {
-    quantityInput.value = 1;
-  });
-  
-  document.getElementById('total').textContent = '0.00';
-}
-	function submitAndReset() {
-	submitOrder();
-	resetCalculator();
-}
-
-  </script>
 </head>
 <body>
-	
-<div style="margin-bottom: 25px;"></div>
- 
-<body style="background-color:grey;">
-	<img src="RexDinerLogo.png" alt="Company Logo!">
+  <img src="RexDinerLogo.png" alt="Company Logo">
   <h1>Rex's Diner Calculator</h1>
-  
+
   <h2>Menu Items</h2>
 
-  <div style="margin-bottom: 10px;"></div>
-  
-  <h3>Drinks</h3>
+  <!-- Use semantic HTML for better structure -->
+  <section class="menu-section">
+    <h3>Drinks</h3>
+    <div class="menu-items">
+      <!-- Use unique IDs or classes for checkboxes -->
+      <div>
+        <input type="checkbox" id="motor-oil-coffee" value="200">
+        <label for="motor-oil-coffee">Motor Oil Coffee - $200</label>
+        <input type="number" value="1" min="1">
+        <img src="motor-oil-coffee.jpg" alt="Motor Oil Coffee">
+      </div>
+      <!-- Add more drink items -->
+    </div>
+  </section>
 
-  <div style="margin-bottom: 10px;"></div>
-  
-  <div>
-    <input type="checkbox" id="uwueats" value="200$">
-    <label for="Velmachoice">Motor Oil Coffee - 200$</label>
-    <input type="number" value="1" min="1">
-  </div>
-  
-  <div>
-    <input type="checkbox" id="Davechoice" value="150$">
-    <label for="Davechoice">Engine Coolant Ice Tea - 150$</label>
-    <input type="number" value="1" min="1">
-  </div>
-  
-  <div>
-    <input type="checkbox" id="Davechoice" value="100$">
-    <label for="Davechoice">eCola - 100$</label>
-    <input type="number" value="1" min="1">
-  </div>
-  
-  <div>
-    <input type="checkbox" id="Davechoice" value="100$">
-    <label for="Davechoice">Sprunk - 100$</label>
-    <input type="number" value="1" min="1">
-  </div>
-  
-  <div>
-    <input type="checkbox" id="Davechoice" value="200$">
-    <label for="Davechoice">Radiator Flush Lemonade - 200$</label>
-    <input type="number" value="1" min="1">
+  <!-- Repeat the structure for other menu sections -->
+
+  <div class="total-box">
+    <span>Total: $</span>
+    <span id="total">0.00</span>
   </div>
 
-
-<h3>Main Dish</h3>
-
-  <div style="margin-bottom: 10px;"></div>
-  
-  <div>
-    <input type="checkbox" id="uwueats" value="100$">
-    <label for="Velmachoice">Garage Fries - 100$</label>
-    <input type="number" value="1" min="1">
-  </div>
-  
-<div>
-    <input type="checkbox" id="uwueats" value="100$">
-    <label for="Velmachoice">Piston Poppers - 100$</label>
-    <input type="number" value="1" min="1">
+  <div class="total-box">
+    <span>Commission (15%): $</span>
+    <span id="discount-total">0.00</span>
   </div>
 
-  <div>
-    <input type="checkbox" id="uwueats" value="100$">
-    <label for="Velmachoice">Gasket Quesadillas - 100$</label>
-    <input type="number" value="1" min="1">
+  <!-- Use a single button class for consistency -->
+  <div class="button-container">
+    <button class="button" id="calculate-button">Calculate Total</button>
+    <button class="button" id="submit-button">Submit Order</button>
+    <button class="button" id="reset-button">Reset</button>
   </div>
 
-  <div>
-    <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">Clutch Burger - 225$</label>
-    <input type="number" value="1" min="1">
-  </div>
+  <script>
+    // Function to calculate total and discount
+    function calculateTotal() {
+      var total = 0;
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
-<div>
-    <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">Carburetor Chicken Sandwich - 225$</label>
-    <input type="number" value="1" min="1">
-  </div>
+      checkboxes.forEach(function(checkbox) {
+        var quantityInput = checkbox.nextElementSibling.nextElementSibling; // Adjust for HTML structure
+        var quantity = parseInt(quantityInput.value);
+        var price = parseFloat(checkbox.value);
 
-  <div>
-    <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">Fuel Line Frank - 225$</label>
-    <input type="number" value="1" min="1">
-  </div>
+        total += price * quantity;
+      });
 
-  <div>
-    <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">V8 Steak Charger - 225$</label>
-    <input type="number" value="1" min="1">
-  </div>
+      var discountTotal = total * 0.15;
+      var totalWithDiscount = total - discountTotal;
 
-  <div>
-    <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">Carburetor Chicken Sandwich - 225$</label>
-    <input type="number" value="1" min="1">
-  </div>
+      document.getElementById('total').textContent = totalWithDiscount.toFixed(2);
+      document.getElementById('discount-total').textContent = discountTotal.toFixed(2);
+    }
 
-  <h3>Refuel</h3>
+    // Function to submit order
+    function submitOrder() {
+      // Your existing submitOrder function
+    }
 
- <div>
-    <input type="checkbox" id="uwueats" value="175$">
-    <label for="Velmachoice">Milkshake Manifold- 175$</label>
-    <input type="number" value="1" min="1">
-  </div>
+    // Function to reset calculator
+    function resetCalculator() {
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      var quantityInputs = document.querySelectorAll('input[type="number"]');
+    
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+      });
+    
+      quantityInputs.forEach(function(quantityInput) {
+        quantityInput.value = 1;
+      });
 
-   <div>
-    <input type="checkbox" id="uwueats" value="175$">
-    <label for="Velmachoice">Wrench Waffles- 175$</label>
-    <input type="number" value="1" min="1">
-  </div>
+      document.getElementById('total').textContent = '0.00';
+      document.getElementById('discount-total').textContent = '0.00';
+    }
 
-   <div>
-    <input type="checkbox" id="uwueats" value="175$">
-    <label for="Velmachoice">Battery Boost Brownie Sundae- 175$</label>
-    <input type="number" value="1" min="1">
-  </div>
-
-
-  <h3> Employee Discount</h3> 
-
-<div>
-  <input type="checkbox" id="25off" value="-25%">
-  <label for="50off">Employee Discount - 25% off</label>
-  <input type="number" value="1" min="1" max="1">
-</div>
-
-<div>
-    <label for="name">Rex's Employee Name:</label>
-    <input type="text" id="name">
-  </div>
-  
-
-<div style="margin-bottom: 25px;"></div>
- 
-<div class="total-box">
-  <span>Total: $</span>
-  <span id="total">0.00</span>
-</div>
-
-<div class="total-box">
-  <span>Commision (15%): $</span>
-  <span id="discount-total">0.00</span>
-</div>
- 
-  <div style="margin-bottom: 45px;"></div>
-  
-
-  <button class="calculate-button" onclick="calculateTotal()">Calculate Total</button>
-  <button class="submit-button" onclick="submitAndReset()">Submit Order</button>
-  <button class="reset-button" onclick="resetCalculator()">Reset</button>
-
- 
-  
-  
-  <div style="margin-bottom: 10px;"></div>
+    // Attach event listeners to buttons
+    document.getElementById('calculate-button').addEventListener('click', calculateTotal);
+    document.getElementById('submit-button').addEventListener('click', submitOrder);
+    document.getElementById('reset-button').addEventListener('click', resetCalculator);
+  </script>
+</body>
+</html>

@@ -336,14 +336,14 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="175$">
     <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
     <input type="number" value="1" min="1">
-    <img src="strawberry-milkeshake.png" alt="Strawberry Milkshake">
+    <img src="strawberry-milkshake.png" alt="Strawberry Milkshake">
   </div>
 
    <div>
     <input type="checkbox" id="uwueats" value="175$">
     <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
     <input type="number" value="1" min="1">
-    <img src="vanilla-milkeshake.png" alt="Vanilla Milkshake">
+    <img src="vanilla-milkshake.png" alt="Vanilla Milkshake">
   </div>
 
    <div>

@@ -300,14 +300,14 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Carburetor Grilled Chicken Sandwich - 225$</label>
     <input type="number" value="1" min="1">
-    <img src="carburetor-grilled-chicken sandwich.png" alt="Carburetor Grilled Chicken Sandwich">	
+    <img src="carburetor-grilled-chicken-sandwich.png" alt="Carburetor Grilled Chicken Sandwich">	
   </div>
   
 <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Carburetor Fried Chicken Sandwich - 225$</label>
     <input type="number" value="1" min="1">
-    <img src="carburetor-fried-chicken sandwich.png" alt="Carburetor Fried Chicken Sandwich">	
+    <img src="carburetor-fried-chicken-sandwich.png" alt="Carburetor Fried Chicken Sandwich">	
   </div>
 
   <div>

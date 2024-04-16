@@ -243,6 +243,7 @@ function resetCalculator() {
     <input type="checkbox" id="Davechoice" value="150$">
     <label for="Davechoice">Engine Coolant Ice Tea - 150$</label>
     <input type="number" value="1" min="1">
+    <img src="engine-coolant-ice-tea.png" alt="Engine Coolant Ice Tea">
   </div>
   
   <div>
@@ -272,6 +273,7 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="100$">
     <label for="Velmachoice">Garage Fries - 100$</label>
     <input type="number" value="1" min="1">
+    #<img src="engine-coolant-ice-tea.png" alt="Garage Fries">
   </div>
   
 <div>
@@ -284,18 +286,28 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="100$">
     <label for="Velmachoice">Gasket Quesadillas - 100$</label>
     <input type="number" value="1" min="1">
+    <img src="gasket-quesadillas.png" alt="Gasket Quesadillas">
   </div>
 
   <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Clutch Burger - 225$</label>
     <input type="number" value="1" min="1">
+    <img src="clutch-burger.png" alt="Clutch Burger">	  
   </div>
 
 <div>
     <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">Carburetor Chicken Sandwich - 225$</label>
+    <label for="Velmachoice">Carburetor Grilled Chicken Sandwich - 225$</label>
     <input type="number" value="1" min="1">
+    <img src="carburetor-grilled-chicken sandwich.png" alt="Carburetor Grilled Chicken Sandwich">	
+  </div>
+  
+<div>
+    <input type="checkbox" id="uwueats" value="225$">
+    <label for="Velmachoice">Carburetor Fried Chicken Sandwich - 225$</label>
+    <input type="number" value="1" min="1">
+    <img src="carburetor-fried-chicken sandwich.png" alt="Carburetor Fried Chicken Sandwich">	
   </div>
 
   <div>
@@ -307,12 +319,6 @@ function resetCalculator() {
   <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">V8 Steak Charger - 225$</label>
-    <input type="number" value="1" min="1">
-  </div>
-
-  <div>
-    <input type="checkbox" id="uwueats" value="225$">
-    <label for="Velmachoice">Carburetor Chicken Sandwich - 225$</label>
     <input type="number" value="1" min="1">
   </div>
 

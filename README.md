@@ -42,7 +42,7 @@
     }
 	
 	h3 {
-      border: 1px solid black; /* Adjust the border style as needed */
+      border: 2px solid violet; /* Adjust the border style as needed */
       padding: 5px; /* Add padding to create space around the heading */
     }
     

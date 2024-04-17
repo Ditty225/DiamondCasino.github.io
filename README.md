@@ -297,6 +297,20 @@ function resetCalculator() {
     <img src="spare_tire_tots.png" alt="Spare Tire Tots">
   </div>
 
+<div>
+    <input type="checkbox" id="uwueats" value="100$">
+    <label for="Velmachoice">Dipstick Dippers - 100$</label>
+    <input type="number" value="1" min="1">
+    <img src="dipstick_dippers.png" alt="Dipstick Dippers">
+  </div>
+
+  <div>
+    <input type="checkbox" id="uwueats" value="100$">
+    <label for="Velmachoice">Oil Change Onion Ringa - 100$</label>
+    <input type="number" value="1" min="1">
+    <img src="oil_change_onion_rings.png" alt="Oil Change Onion Rings">
+  </div>
+
   <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Clutch Burger - 225$</label>

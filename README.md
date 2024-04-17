@@ -273,7 +273,7 @@ function resetCalculator() {
     <input type="checkbox" id="uwueats" value="100$">
     <label for="Velmachoice">Garage Fries - 100$</label>
     <input type="number" value="1" min="1">
-    #<img src="garage-fries.png" alt="Garage Fries">
+    <img src="garage-fries.png" alt="Garage Fries">
   </div>
   
 <div>
@@ -314,7 +314,8 @@ function resetCalculator() {
   <div>
     <input type="checkbox" id="uwueats" value="225$">
     <label for="Velmachoice">Clutch Burger - 225$</label>
-    <input type="number" value="1" min="1"> 
+    <input type="number" value="1" min="1">
+    <img src="clutch_burger.png" alt="Clutch Burger">
   </div>
 
 <div>

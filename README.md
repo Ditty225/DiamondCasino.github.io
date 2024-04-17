@@ -75,145 +75,116 @@
         <h3>Drinks</h3>
         <!-- Individual items -->
         <div>
-            <input type="checkbox" id="coffee" value="200">
-            <label for="coffee">Motor Oil Coffee - $200</label>
-            <input type="number" value="1" min="1">
-        </div>
-        <!-- Add more items as needed following the same structure -->
-    </div>
-        <div>
         <input type="checkbox" id="uwueats" value="200$">
         <label for="Velmachoice">Motor Oil Coffee - 200$</label>
         <input type="number" value="1" min="1">
         <img src="motor-oil-coffee.png" alt="Motor Oil Coffee">
       </div>
-      
         <div>
         <input type="checkbox" id="Davechoice" value="150$">
         <label for="Davechoice">Engine Coolant Ice Tea - 150$</label>
         <input type="number" value="1" min="1">
         <img src="engine-coolant-ice-tea.png" alt="Engine Coolant Ice Tea">
       </div>
-      
         <div>
         <input type="checkbox" id="Davechoice" value="100$">
         <label for="Davechoice">eCola - 100$</label>
         <input type="number" value="1" min="1">
       </div>
-      
          <div>
         <input type="checkbox" id="Davechoice" value="100$">
         <label for="Davechoice">Sprunk - 100$</label>
         <input type="number" value="1" min="1">
       </div>
-      
         <div>
         <input type="checkbox" id="Davechoice" value="200$">
         <label for="Davechoice">Radiator Flush Lemonade - 200$</label>
         <input type="number" value="1" min="1">
       </div>
-    
-    
     <h3>Main Dish</h3>
-    
-      <div style="margin-bottom: 10px;"></div>
-      
+         <div style="margin-bottom: 10px;"></div>
         <div>
         <input type="checkbox" id="uwueats" value="100$">
         <label for="Velmachoice">Garage Fries - 100$</label>
         <input type="number" value="1" min="1">
         <img src="garage-fries.png" alt="Garage Fries">
       </div>
-      
         <div>
         <input type="checkbox" id="uwueats" value="100$">
         <label for="Velmachoice">Piston Poppers - 100$</label>
         <input type="number" value="1" min="1">
         <img src="piston-poppers.png" alt="Piston Poppers">
       </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="100$">
         <label for="Velmachoice">Gasket Quesadillas - 100$</label>
         <input type="number" value="1" min="1">
         <img src="gasket-quesadillas.png" alt="Gasket Quesadillas">
       </div>
-    
          <div>
         <input type="checkbox" id="uwueats" value="100$">
         <label for="Velmachoice">Spare Tire Tots - 100$</label>
         <input type="number" value="1" min="1">
         <img src="spare_tire_tots.png" alt="Spare Tire Tots">
         </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="100$">
         <label for="Velmachoice">Dipstick Dippers - 100$</label>
         <input type="number" value="1" min="1">
         <img src="dipstick_dippers.png" alt="Dipstick Dippers">
       </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="100$">
         <label for="Velmachoice">Oil Change Onion Ringa - 100$</label>
         <input type="number" value="1" min="1">
         <img src="oil_change_onion_rings.png" alt="Oil Change Onion Rings">
       </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="225$">
         <label for="Velmachoice">Clutch Burger - 225$</label>
         <input type="number" value="1" min="1">
         <img src="clutch_burger.png" alt="Clutch Burger">
       </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="225$">
         <label for="Velmachoice">Carburetor Grilled Chicken Sandwich - 225$</label>
         <input type="number" value="1" min="1">
         <img src="carburetor-grilled-chicken-sandwich.png" alt="Carburetor Grilled Chicken Sandwich">	
       </div>
-      
         <div>
         <input type="checkbox" id="uwueats" value="225$">
         <label for="Velmachoice">Carburetor Fried Chicken Sandwich - 225$</label>
         <input type="number" value="1" min="1">
         <img src="carburetor-fried-chicken-sandwich.png" alt="Carburetor Fried Chicken Sandwich">	
       </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="225$">
         <label for="Velmachoice">Fuel Line Frank - 225$</label>
         <input type="number" value="1" min="1">
         <img src="fuel-line-frank.png" alt="Fuel Line Frank">
       </div>
-    
         <div>
         <input type="checkbox" id="uwueats" value="225$">
         <label for="Velmachoice">V8 Steak Charger - 225$</label>
         <input type="number" value="1" min="1">
         <img src="v8-steak-charger.png" alt="V8 Steak Charger">
       </div>
-
     <!-- Discounts -->
     <h3>Employee Discount</h3>
     <div>
         <input type="checkbox" id="25off" value="-25">
         <label for="25off">Employee Discount - 25% off</label>
     </div>
-
     <!-- Input for employee name -->
     <div>
         <label for="name">Rex's Employee Name:</label>
         <input type="text" id="name">
     </div>
-
     <!-- Display total -->
     <div class="total-box">
         <span>Total: $</span>
         <span id="total">0.00</span>
     </div>
-   
     <!-- Buttons for actions -->
     <button class="calculate-button" onclick="calculateTotal()">Calculate Total</button>
     <button class="submit-button" onclick="submitAndReset()">Submit Order</button>

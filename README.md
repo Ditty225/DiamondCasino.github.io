@@ -169,6 +169,37 @@
         <input type="number" value="1" min="1">
         <img src="v8-steak-charger.png" alt="V8 Steak Charger">
       </div>
+    <h3>Refuel</h3>
+         <div>
+         <input type="checkbox" id="uwueats" value="175$">
+         <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
+         <input type="number" value="1" min="1">
+         <img src="chocolate-milkeshake.png" alt="Chocolate Milkshake">
+       </div>
+        <div>
+         <input type="checkbox" id="uwueats" value="175$">
+         <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
+         <input type="number" value="1" min="1">
+         <img src="strawberry-milkshake.png" alt="Strawberry Milkshake">
+       </div>
+        <div>
+         <input type="checkbox" id="uwueats" value="175$">
+         <label for="Velmachoice">Chocolate Milkshake Manifold- 175$</label>
+         <input type="number" value="1" min="1">
+         <img src="vanilla-milkshake.png" alt="Vanilla Milkshake">
+       </div>
+        <div>
+         <input type="checkbox" id="uwueats" value="175$">
+         <label for="Velmachoice">Wrench Waffles- 175$</label>
+         <input type="number" value="1" min="1">
+         <img src="wrench-waffles.png" alt="Wrench Waffles">
+       </div>
+        <div>
+         <input type="checkbox" id="uwueats" value="175$">
+         <label for="Velmachoice">Battery Boost Brownie Sundae- 175$</label>
+         <input type="number" value="1" min="1">
+         <img src="battery-boost-brownie-sundae.png" alt="Battery Boost Brownie Sundae">
+       </div>
     <!-- Discounts -->
     <h3>Employee Discount</h3>
     <div>

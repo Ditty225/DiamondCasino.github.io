@@ -220,7 +220,7 @@ function resetCalculator() {
 	
 <div style="margin-bottom: 25px;"></div>
  
-<body style="background-color:grey;">
+<body style="background-color:dodgerblue;">
 	<img src="RexDinerLogo.png" alt="Company Logo!">
   <h1>Rex's Diner Calculator</h1>
   

@@ -100,11 +100,10 @@
       var price = parseFloat(checkbox.value);
       selectedItems.push({ name: itemName, quantity: quantity, price: price });
     });
-
     var total = 0;
     var discountTotal = 0;
 
-    selectedItems.forEach(function (item) {
+ selectedItems.forEach(function (item) {
       if (item.price < 0) {
         var discountPercentage = Math.abs(item.price);
         var itemDiscount = total * (discountPercentage / 100);
@@ -113,20 +112,17 @@
         total += item.price * item.quantity;
       }
     });
-
     var commission = (total * 0.15).toFixed(2);
     var totalWithDiscount = total - discountTotal;
 
-    alert('Order submitted!');
+  alert('Order submitted!');
 
-    var discordWebhookURL = 'https://discordapp.com/api/webhooks/1173524631177670717/7OulHbdgxQLuS2Qd-SClogA5LwpOmZ_fY9XJ9lxZlNYi4DOZacY5IucqtsMXUCrtoRTm';
-
-
+  var discordWebhookURL = 'https://discordapp.com/api/webhooks/1173524631177670717/7OulHbdgxQLuS2Qd-SClogA5LwpOmZ_fY9XJ9lxZlNYi4DOZacY5IucqtsMXUCrtoRTm';
     var xhr = new XMLHttpRequest();
     xhr.open('POST', discordWebhookURL, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    var message = {
+var message = {
       content: 'New order!',
       embeds: [{
         title: 'Order Details',
@@ -160,7 +156,7 @@
       }]
     };
 
-    xhr.send(JSON.stringify(message));
+ xhr.send(JSON.stringify(message));
   }
 
 
@@ -228,61 +224,61 @@
     </div>
     <div>
       <input type="checkbox" id="uwueats" value="100$">
-      <label for="Velmachoice">Piston Poppers - 100$</label>
+      <label for="uwueats">Piston Poppers - 100$</label>
       <input type="number" value="1" min="1">
       <img src="piston-poppers.png" alt="Piston Poppers">
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="100$">
-      <label for="Velmachoice">Gasket Quesadillas - 100$</label>
+      <label for="uwueats">Gasket Quesadillas - 100$</label>
       <input type="number" value="1" min="1">
       <img src="gasket-quesadillas.png" alt="Gasket Quesadillas">
       </div>
        <div>
       <input type="checkbox" id="uwueats" value="100$">
-      <label for="Velmachoice">Spare Tire Tots - 100$</label>
+      <label for="uwueats">Spare Tire Tots - 100$</label>
       <input type="number" value="1" min="1">
       <img src="spare_tire_tots.png" alt="Spare Tire Tots">
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="100$">
-      <label for="Velmachoice">Dipstick Dippers - 100$</label>
+      <label for="uwueats">Dipstick Dippers - 100$</label>
       <input type="number" value="1" min="1">
       <img src="dipstick_dippers.png" alt="Dipstick Dippers">
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="100$">
-      <label for="Velmachoice">Oil Change Onion Ringa - 100$</label>
+      <label for="uwueats">Oil Change Onion Ringa - 100$</label>
       <input type="number" value="1" min="1">
       <img src="oil_change_onion_rings.png" alt="Oil Change Onion Rings">
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="225$">
-      <label for="Velmachoice">Clutch Burger - 225$</label>
+      <label for="uwueats">Clutch Burger - 225$</label>
       <input type="number" value="1" min="1">
       <img src="clutch_burger.png" alt="Clutch Burger">
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="225$">
-      <label for="Velmachoice">Carburetor Grilled Chicken Sandwich - 225$</label>
+      <label for="uwueats">Carburetor Grilled Chicken Sandwich - 225$</label>
       <input type="number" value="1" min="1">
       <img src="carburetor-grilled-chicken-sandwich.png" alt="Carburetor Grilled Chicken Sandwich">	
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="225$">
-      <label for="Velmachoice">Carburetor Fried Chicken Sandwich - 225$</label>
+      <label for="uwueats">Carburetor Fried Chicken Sandwich - 225$</label>
       <input type="number" value="1" min="1">
       <img src="carburetor-fried-chicken-sandwich.png" alt="Carburetor Fried Chicken Sandwich">	
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="225$">
-      <label for="Velmachoice">Fuel Line Frank - 225$</label>
+      <label for="uwueats">Fuel Line Frank - 225$</label>
       <input type="number" value="1" min="1">
       <img src="fuel-line-frank.png" alt="Fuel Line Frank">
       </div>
       <div>
       <input type="checkbox" id="uwueats" value="225$">
-      <label for="Velmachoice">V8 Steak Charger - 225$</label>
+      <label for="uwueats">V8 Steak Charger - 225$</label>
       <input type="number" value="1" min="1">
       <img src="v8-steak-charger.png" alt="V8 Steak Charger">
       </div>

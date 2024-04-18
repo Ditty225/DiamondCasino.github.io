@@ -58,12 +58,12 @@
     var total = 0;
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
-    checkboxes.forEach(function(checkbox) {
+checkboxes.forEach(function(checkbox) {
       var quantityInput = checkbox.parentNode.querySelector('input[type="number"]');
       var quantity = parseInt(quantityInput.value);
       var price = parseFloat(checkbox.value);
-
-      if (checkbox.value === '-25%') {
+      
+ if (checkbox.value === '-25%') {
         var itemPrice = total * 0.25;
         total -= itemPrice;
       } else if (checkbox.value === '-30%') {
@@ -77,10 +77,10 @@
       }
     });
 
-    var totalElement = document.getElementById('total');
+ var totalElement = document.getElementById('total');
     totalElement.textContent = total.toFixed(2);
 
-    var discountTotalElement = document.getElementById('discount-total');
+   var discountTotalElement = document.getElementById('discount-total');
     var discount = total * 0.15;
     discountTotalElement.textContent = discount.toFixed(2);
   }
@@ -290,7 +290,7 @@ var message = {
       <input type="checkbox" id="chocolateMilkshake" value="175">
       <label for="chocolateMilkshake">Chocolate Milkshake Manifold - $175</label>
       <input type="number" value="1" min="1">
-      <img src="chocolate-milkshake.png" alt="Chocolate Milkshake">
+      <img src="chocolate-milkeshake.png" alt="Chocolate Milkshake">
     </div>
     <div>
       <input type="checkbox" id="uwueats" value="175$">

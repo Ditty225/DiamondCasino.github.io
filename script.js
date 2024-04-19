@@ -23,57 +23,32 @@ function submitOrder() {
 
   var selectedItems = [];
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  checkboxes.forEach(function (checkbox) {
+  checkboxes.forEach(function(checkbox) {
     var itemName = checkbox.nextElementSibling.textContent;
     var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
     var quantity = parseInt(quantityInput.value, 10);
     var price = parseFloat(checkbox.value);
     selectedItems.push({
-      name: itemName.trim(), // Ensure whitespace is trimmed
+      name: itemName.trim(),
       quantity: quantity,
       price: price
     });
   });
 
-  function resetCalculator() {
-  // Uncheck all checkboxes
-  document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
-    checkbox.checked = false;
-  });
-
-  // Reset quantity inputs to 1
-  document.querySelectorAll('input[type="number"]').forEach(function(numberInput) {
-    numberInput.value = 1;
-  });
-
-  // Reset the total display to $0.00
-  document.getElementById('total').textContent = '$0.00';
-}
-function submitAndReset() {
-  submitOrder();
-  // Delay resetCalculator by 2000 milliseconds (2 seconds) after the order submission
-  setTimeout(resetCalculator, 2000);
-}
-  
-
   var total = parseFloat(document.getElementById('total').textContent.substring(1));
   var commission = (total * 0.15).toFixed(2);
 
-  // Your actual Discord webhook URL
   var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', discordWebhookURL, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
 
-  // Set up a callback function that will be called when the request's state changes
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 204 || (xhr.status >= 200 && xhr.status < 300)) {
-        // The request has been completed successfully, show an alert
         alert('Order submitted successfully!');
       } else {
-        // There was an error with the request, show an alert or handle it appropriately
         alert('Failed to submit the order. Please try again.');
       }
     }
@@ -95,4 +70,25 @@ function submitAndReset() {
   });
 
   xhr.send(message);
+}
+
+function resetCalculator() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  var quantityInputs = document.querySelectorAll('input[type="number"]');
+  
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = false;
+  });
+  
+  quantityInputs.forEach(function(quantityInput) {
+    quantityInput.value = 1;
+  });
+  
+  document.getElementById('total').textContent = '$0.00';
+}
+
+function submitAndReset() {
+  submitOrder();
+  // Adding a delay before reset to give some time for the order to be processed
+  setTimeout(resetCalculator, 2000);
 }

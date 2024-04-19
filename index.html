@@ -5,12 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu Calculator</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .menu-item {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 800px;
+    }
+    .menu-item img {
+      width: 50px;
+      height: auto;
+      margin-left: 10px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .total-box {
+      margin-top: 20px;
+    }
+    .company-logo img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-  <div class="company-logo">
-    <img src="RexDinerLogo.png" alt="Rex's Diner Logo">
-  </div>
+  <div class="container">
+    <div class="company-logo">
+      <img src="path_to_your_logo.png" alt="Rex's Diner Logo">
+    </div>
+    
   <h1>Rex's Diner Calculator</h1>
 
   <section class="menu-items">

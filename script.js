@@ -37,7 +37,7 @@ function submitOrder() {
   var total = parseFloat(document.getElementById('total').textContent.substring(1));
   var commission = (total * 0.15).toFixed(2);
 
-  var discordWebhookURL = 'https://discord.com/api/webhooks/...'; // Replace with your actual webhook URL
+  var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96'; // Replace with your actual webhook URL
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {

@@ -54,6 +54,20 @@ function submitOrder() {
       }
     }
   };
+ // Create the message payload for Discord
+  var discordMessage = {
+    content: 'New order!',
+    // ... Discord-specific payload ...
+  };
+
+  // Send to Discord
+  sendWebhookRequest(discordWebhookURL, discordMessage, function(success) {
+    if (success) {
+      alert('Order submitted to Discord successfully!');
+    } else {
+      alert('Failed to submit order to Discord.');
+    }
+  });  
  // Prepare the data payload for Google Apps Script
   var googleScriptMessage = {
     timestamp: new Date().toISOString(),

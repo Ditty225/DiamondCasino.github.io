@@ -14,80 +14,59 @@ function calculateTotal() {
 }
 
 function submitOrder() {
-  var name = document.getElementById('name').value;
-  if (name.trim() === '') {
+  var nameInput = document.getElementById('name');
+  if (!nameInput || nameInput.value.trim() === '') {
     alert('Please enter a name.');
     return;
   }
+  var name = nameInput.value.trim();
 
-  // Collect selected items and their quantities
   var selectedItems = [];
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  checkboxes.forEach(function (checkbox) {
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
     var itemName = checkbox.nextElementSibling.textContent;
     var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
     var quantity = parseInt(quantityInput.value);
     var price = parseFloat(checkbox.value);
-    selectedItems.push({ name: itemName, quantity: quantity, price: price });
+    selectedItems.push({
+      name: itemName.trim(), // Ensure we trim any excess whitespace
+      quantity: quantity,
+      price: price
+    });
   });
 
-  // No need to recalculate total, use the calculated total
-  var total = parseFloat(document.getElementById('total').textContent.substring(1)); // remove the dollar sign
-  var commission = (total * 0.15).toFixed(2); // 15% commission
-  var totalWithDiscount = total; // If you have discounts apply them here
+  var total = parseFloat(document.getElementById('total').textContent.substring(1));
+  var commission = (total * 0.15).toFixed(2);
 
-  alert('Order submitted!');
-
-  // Replace with your actual Discord webhook URL
-  var discordWebhookURL = 'https://discord.com/api/webhooks/1229932797750284400/z2X-9PHxqaJ7H-mHEP55Lf234eduw34XOq7jFbDsudYPyj5csxkCRAheCOWtAstJ7BRl';
+  var discordWebhookURL = 'https://discord.com/api/webhooks/...'; // Replace with your actual webhook URL
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', discordWebhookURL, true);
+  xhr.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE) {
+      if (this.status >= 200 && this.status < 300) {
+        console.log('Webhook sent successfully.');
+      } else {
+        console.error('Webhook error:', this.responseText);
+      }
+    }
+  };
+
+  xhr.open('POST', discordWebhookURL);
   xhr.setRequestHeader('Content-Type', 'application/json');
 
-  var message = {
-    content: 'New order!',
+  var embedDescription = selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
+  
+  var message = JSON.stringify({
+    content: 'New order!', // If you don't want additional content, set this to null
     embeds: [{
       title: 'Order Details',
       fields: [
-        {
-          name: 'Name',
-          value: name,
-          inline: true
-        },
-        {
-          name: 'Total',
-          value: '$' + totalWithDiscount.toFixed(2),
-          inline: true
-        },
-        {
-          name: 'Commission (15%)',
-          value: '$' + commission,
-          inline: true
-        },
-        {
-          name: 'Ordered Items',
-          value: selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n'),
-          inline: false
-        }
+        { name: 'Name', value: name, inline: true },
+        { name: 'Total', value: `$${total.toFixed(2)}`, inline: true },
+        { name: 'Commission (15%)', value: `$${commission}`, inline: true },
+        { name: 'Ordered Items', value: embedDescription, inline: false }
       ]
     }]
-  };
-
-  xhr.send(JSON.stringify(message));
-}
-
-function resetCalculator() {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  var quantityInputs = document.querySelectorAll('input[type="number"]');
-
-  checkboxes.forEach(function(checkbox) {
-    checkbox.checked = false;
   });
 
-  quantityInputs.forEach(function(quantityInput) {
-    quantityInput.value = 1;
-  });
-
-  document.getElementById('total').textContent = '$0.00'; // Reset the total display
+  xhr.send(message);
 }

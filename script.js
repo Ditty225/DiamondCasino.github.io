@@ -56,7 +56,7 @@ function submitOrder() {
     var commission = (total * 0.15).toFixed(2);
 
     var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
-    var googleScriptWebhookURL = 'https://script.google.com/macros/s/AKfycbw2IEiEdav8UbjkMchOl1y6c-C88CMPFhsu8SgVoLArjb2xbCdAUb8M_2_J-CSTTXUjkQ/exec';
+    var googleScriptWebhookURL = 'https://script.google.com/macros/s/AKfycbzlLG3rkG3IhKnr2thGoXVR8PSyd3TyusafyS0uLLiwZJwChNus8NObMeK3GkXE5mhIdA/exec';
 
     // Sending to Discord
     var discordMessage = {

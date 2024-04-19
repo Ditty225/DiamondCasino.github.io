@@ -63,18 +63,21 @@ function submitAndReset() {
   var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
 
   var xhr = new XMLHttpRequest();
+  xhr.open('POST', discordWebhookURL, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  // Set up a callback function that will be called when the request's state changes
   xhr.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE) {
-      if (this.status === 204 || (this.status >= 200 && this.status < 300)) {
-        console.log('Webhook sent successfully.');
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 204 || (xhr.status >= 200 && xhr.status < 300)) {
+        // The request has been completed successfully, show an alert
+        alert('Order submitted successfully!');
       } else {
-        console.error('Webhook error:', this.responseText);
+        // There was an error with the request, show an alert or handle it appropriately
+        alert('Failed to submit the order. Please try again.');
       }
     }
   };
-
-  xhr.open('POST', discordWebhookURL);
-  xhr.setRequestHeader('Content-Type', 'application/json');
 
   var embedDescription = selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
   var message = JSON.stringify({

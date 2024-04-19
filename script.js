@@ -29,7 +29,7 @@ function submitOrder() {
     var quantity = parseInt(quantityInput.value, 10);
     var price = parseFloat(checkbox.value);
     selectedItems.push({
-      name: itemName.trim(),
+      name: itemName.trim(), // Ensure whitespace is trimmed
       quantity: quantity,
       price: price
     });

@@ -39,7 +39,8 @@ function submitOrder() {
   var commission = (total * 0.15).toFixed(2);
 
   var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
-
+  var googleScriptWebhookURL = 'https://script.google.com/macros/s/AKfycbyaLIdrEAQ5x1xWj7PcEN1R7Xb_8RBHHXeAp85vQxtciv0sZd4AWUOk-BSov1WtvEpluA/exec';
+  
   var xhr = new XMLHttpRequest();
   xhr.open('POST', discordWebhookURL, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
@@ -53,6 +54,40 @@ function submitOrder() {
       }
     }
   };
+ // Prepare the data payload for Google Apps Script
+  var googleScriptMessage = {
+    timestamp: new Date().toISOString(),
+    name: name,
+    total: total.toFixed(2),
+    commission: commission,
+    items: selectedItems,
+  };
+
+  // Send to Google Apps Script
+  sendWebhookRequest(googleScriptWebhookURL, googleScriptMessage, function(success) {
+    if (success) {
+      alert('Order logged to spreadsheet successfully!');
+    } else {
+      alert('Failed to log order to spreadsheet.');
+    }
+  });
+
+  // Maybe delay resetting the form a bit to let user see the alerts
+  setTimeout(resetCalculator, 3000);
+}
+
+// Helper function to send webhook requests
+function sendWebhookRequest(webhookUrl, message, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', webhookUrl, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      callback(xhr.status === 204 || (xhr.status >= 200 && xhr.status < 300));
+    }
+  };
+  xhr.send(JSON.stringify(message));
+}  
 
   var embedDescription = selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
   var message = JSON.stringify({

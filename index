@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="company-logo">
-    <img src="path_to_your_logo.png" alt="Rex's Diner Logo">
+    <img src="RexDinerLogo.png" alt="Rex's Diner Logo">
   </div>
   <h1>Rex's Diner Calculator</h1>
 

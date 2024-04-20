@@ -8,6 +8,8 @@ function submitOrder() {
 
     var selectedItems = [];
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    console.log(`Found ${checkboxes.length} checked items.`);  // Debugging output
+
     checkboxes.forEach(function(checkbox) {
         var itemName = checkbox.nextElementSibling.textContent;
         var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
@@ -19,15 +21,22 @@ function submitOrder() {
                 quantity: quantity,
                 price: price
             });
+            console.log(`Item: ${itemName}, Quantity: ${quantity}, Price: ${price}`);  // Debugging output
         }
     });
 
-    var total = parseFloat(document.getElementById('total').textContent.substring(1));
+    if (selectedItems.length === 0) {
+        alert("No items selected or quantities are set to zero.");
+        return;
+    }
+
+    var total = selectedItems.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
     var commission = (total * 0.15).toFixed(2);
+    console.log(`Total: $${total.toFixed(2)}, Commission: $${commission}`);  // Debugging output
 
     var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
 
-    // Sending to Discord
     var discordMessage = {
         content: 'New order!',
         embeds: [{
@@ -44,8 +53,7 @@ function submitOrder() {
 
     sendWebhookRequest(discordWebhookURL, discordMessage, function(success) {
         if (success) {
-            alert('Order submitted successfully!');
-            setTimeout(resetCalculator, 2000); // Reset form after a successful submission
+            alert('Order submitted to Discord successfully!');
         } else {
             alert('Failed to submit order to Discord.');
         }

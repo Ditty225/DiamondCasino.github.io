@@ -44,7 +44,7 @@ function submitOrder() {
 
     sendWebhookRequest(discordWebhookURL, discordMessage, function(success) {
         if (success) {
-            alert('Order submitted to Discord successfully!');
+            alert('Order submitted successfully!');
             setTimeout(resetCalculator, 2000); // Reset form after a successful submission
         } else {
             alert('Failed to submit order to Discord.');

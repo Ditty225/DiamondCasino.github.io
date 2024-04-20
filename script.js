@@ -52,6 +52,8 @@ function submitOrder() {
     });
 }
 
+
+
 function resetCalculator() {
     // Add logic to reset the form and any displayed totals or selections
     document.querySelectorAll('input[type="number"]').forEach(input => input.value = 1);
@@ -61,4 +63,20 @@ function resetCalculator() {
 }
 
 // Assume calculateTotal() exists or define it here
+ function calculateTotal() {
+    var total = 0;
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    checkboxes.forEach(function(checkbox) {
+        var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
+        var quantity = parseInt(quantityInput.value, 10);
+        var price = parseFloat(checkbox.value);
+        if (quantity > 0) {
+            total += quantity * price;
+        }
+    });
+
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
+}
+
 

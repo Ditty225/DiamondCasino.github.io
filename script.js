@@ -32,7 +32,7 @@ function submitOrder() {
     document.getElementById('total').textContent = '$' + total.toFixed(2);
 
     // Send order to Google Sheet via Google Apps Script Web App
-    fetch('https://script.google.com/macros/s/AKfycbyjpD6PTHXoXfJgpOQ-y8fUeJimU8LtEemnakuCOV2rNh2OtZw0TN8CsvOs7nCNGSpcSg/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwA9jVU61JR1ztoSouJOtp3xy_EYY4d_qjcDbxqvOcm_6Lu-dsDQy-zuqCS22Lp_II_HQ/exec', {
         method: 'POST',
         contentType: 'application/json',
         body: JSON.stringify({ customerName: customerName, selectedItems: selectedItems })

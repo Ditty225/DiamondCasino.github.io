@@ -32,14 +32,17 @@ function submitOrder() {
     document.getElementById('total').textContent = '$' + total.toFixed(2);
 
     // Send order to Google Sheet via Google Apps Script Web App
-    fetch('https://script.google.com/macros/s/AKfycbwA9jVU61JR1ztoSouJOtp3xy_EYY4d_qjcDbxqvOcm_6Lu-dsDQy-zuqCS22Lp_II_HQ/exec', {
+    fetch('YOUR_WEB_APP_URL', {  // Replace 'YOUR_WEB_APP_URL' with your actual endpoint URL
         method: 'POST',
-        contentType: 'application/json',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ customerName: customerName, selectedItems: selectedItems })
     }).then(response => response.json())
       .then(data => {
         if (data.result === "success") {
             alert('Order submitted successfully!');
+            resetCalculator();  // Optionally reset the form after submission
         } else {
             alert('Failed to submit order.');
         }
@@ -48,3 +51,14 @@ function submitOrder() {
         alert('Failed to submit order.');
     });
 }
+
+function resetCalculator() {
+    // Add logic to reset the form and any displayed totals or selections
+    document.querySelectorAll('input[type="number"]').forEach(input => input.value = 1);
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+    document.getElementById('total').textContent = '$0.00';
+    document.getElementById('name').value = '';
+}
+
+// Assume calculateTotal() exists or define it here
+

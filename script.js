@@ -8,8 +8,7 @@ function submitOrder() {
 
     var selectedItems = [];
     var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    console.log(`Found ${checkboxes.length} checked items.`);  // Debugging output
-
+    
     checkboxes.forEach(function(checkbox) {
         var itemName = checkbox.nextElementSibling.textContent;
         var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
@@ -21,7 +20,6 @@ function submitOrder() {
                 quantity: quantity,
                 price: price
             });
-            console.log(`Item: ${itemName}, Quantity: ${quantity}, Price: ${price}`);  // Debugging output
         }
     });
 
@@ -32,30 +30,21 @@ function submitOrder() {
 
     var total = selectedItems.reduce((acc, item) => acc + (item.quantity * item.price), 0);
     document.getElementById('total').textContent = '$' + total.toFixed(2);
-    var commission = (total * 0.15).toFixed(2);
-    console.log(`Total: $${total.toFixed(2)}, Commission: $${commission}`);  // Debugging output
 
-    var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
-
-    var discordMessage = {
-        content: 'New order!',
-        embeds: [{
-            title: 'Order Details',
-            description: selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n'),
-            color: 5814783,
-            fields: [
-                { name: 'Name', value: customerName, inline: true },
-                { name: 'Total', value: `$${total.toFixed(2)}`, inline: true },
-                { name: 'Commission (15%)', value: `$${commission}`, inline: true }
-            ]
-        }]
-    };
-
-    sendWebhookRequest(discordWebhookURL, discordMessage, function(success) {
-        if (success) {
-            alert('Order submitted to Discord successfully!');
+    // Send order to Google Sheet via Google Apps Script Web App
+    fetch('https://script.google.com/macros/s/AKfycbyjpD6PTHXoXfJgpOQ-y8fUeJimU8LtEemnakuCOV2rNh2OtZw0TN8CsvOs7nCNGSpcSg/exec', {
+        method: 'POST',
+        contentType: 'application/json',
+        body: JSON.stringify({ customerName: customerName, selectedItems: selectedItems })
+    }).then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+            alert('Order submitted successfully!');
         } else {
-            alert('Failed to submit order to Discord.');
+            alert('Failed to submit order.');
         }
+    }).catch(error => {
+        console.error('Error:', error);
+        alert('Failed to submit order.');
     });
 }

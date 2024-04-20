@@ -32,7 +32,7 @@ function submitOrder() {
     document.getElementById('total').textContent = '$' + total.toFixed(2);
 
     // Send order to Google Sheet via Google Apps Script Web App
-    fetch('YOUR_WEB_APP_URL', {  // Replace 'YOUR_WEB_APP_URL' with your actual endpoint URL
+    fetch('https://script.google.com/macros/s/AKfycbwA9jVU61JR1ztoSouJOtp3xy_EYY4d_qjcDbxqvOcm_6Lu-dsDQy-zuqCS22Lp_II_HQ/exec', {  // Replace 'YOUR_WEB_APP_URL' with your actual endpoint URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

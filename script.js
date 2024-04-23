@@ -1,3 +1,4 @@
+// Function to calculate the total
 function calculateTotal() {
   var total = 0;
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -8,6 +9,12 @@ function calculateTotal() {
     var price = parseFloat(checkbox.value);
     total += price * quantity;
   });
+
+  // Check if discount is applied
+  var discountApplied = document.getElementById('discount-checkbox').checked;
+  if (discountApplied) {
+    total *= 0.85; // Apply 15% discount
+  }
 
   var totalElement = document.getElementById('total');
   totalElement.textContent = '$' + total.toFixed(2); // Update the total on the page

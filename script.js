@@ -20,6 +20,7 @@ function calculateTotal() {
   totalElement.textContent = '$' + total.toFixed(2); // Update the total on the page
 }
 
+// Function to submit the order
 function submitOrder() {
   var nameInput = document.getElementById('name');
   if (!nameInput || nameInput.value.trim() === '') {
@@ -43,6 +44,13 @@ function submitOrder() {
   });
 
   var total = parseFloat(document.getElementById('total').textContent.substring(1));
+  
+  // Check if discount is applied
+  var discountApplied = document.getElementById('discount-checkbox').checked;
+  if (discountApplied) {
+    total *= 0.85; // Apply 15% discount
+  }
+
   var commission = (total * 0.15).toFixed(2);
 
   var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
@@ -71,6 +79,7 @@ function submitOrder() {
       fields: [
         { name: 'Name', value: name, inline: true },
         { name: 'Total', value: `$${total.toFixed(2)}`, inline: true },
+        { name: 'Discount Applied', value: discountApplied ? 'Yes (15% off)' : 'No', inline: true },
         { name: 'Commission (15%)', value: `$${commission}`, inline: true }
       ]
     }]
@@ -79,6 +88,7 @@ function submitOrder() {
   xhr.send(message);
 }
 
+// Function to reset the calculator
 function resetCalculator() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   var quantityInputs = document.querySelectorAll('input[type="number"]');
@@ -92,10 +102,7 @@ function resetCalculator() {
   });
   
   document.getElementById('total').textContent = '$0.00';
-}
 
-function submitAndReset() {
-  submitOrder();
-  // Adding a delay before reset to give some time for the order to be processed
-  setTimeout(resetCalculator, 2000);
+  // Reset the discount checkbox
+  document.getElementById('discount-checkbox').checked = false;
 }

@@ -9,15 +9,7 @@ function calculateTotal() {
     var price = parseFloat(checkbox.value);
     total += price * quantity;
   });
-// Function to calculate discounted total
-function calculateDiscountedTotal(originalTotal) {
-  var discountApplied = document.getElementById('discount-checkbox').checked;
-  if (discountApplied) {
-    return originalTotal * 0.85; // Apply 15% discount
-  } else {
-    return originalTotal;
-  }
-}
+  
   // Check if discount is applied
   var discountApplied = document.getElementById('discount-checkbox').checked;
   if (discountApplied) {

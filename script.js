@@ -1,82 +1,94 @@
-function submitOrder() {
-    var nameInput = document.getElementById('name');
-    var customerName = nameInput.value.trim();
-    if (!customerName) {
-        alert('Please enter a name.');
-        return;
-    }
+function calculateTotal() {
+  var total = 0;
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
-    var selectedItems = [];
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    
-    checkboxes.forEach(function(checkbox) {
-        var itemName = checkbox.nextElementSibling.textContent;
-        var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
-        var quantity = parseInt(quantityInput.value, 10);
-        if (quantity > 0) {
-            var price = parseFloat(checkbox.value);
-            selectedItems.push({
-                name: itemName.trim(),
-                quantity: quantity,
-                price: price
-            });
-        }
-    });
+  checkboxes.forEach(function(checkbox) {
+    var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
+    var quantity = parseInt(quantityInput.value);
+    var price = parseFloat(checkbox.value);
+    total += price * quantity;
+  });
 
-    if (selectedItems.length === 0) {
-        alert("No items selected or quantities are set to zero.");
-        return;
-    }
-
-    var total = selectedItems.reduce((acc, item) => acc + (item.quantity * item.price), 0);
-    document.getElementById('total').textContent = '$' + total.toFixed(2);
-
-    // Send order to Google Sheet via Google Apps Script Web App
-    fetch('https://script.google.com/macros/s/AKfycbzPCuUlKElyIjrpalvYlikhAgHFVn0Lxjwru6HUAp9MFmN0maehLBiGd_ajW6oWbok-bw/exec', {  // Replace 'YOUR_WEB_APP_URL' with your actual endpoint URL
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ customerName: customerName, selectedItems: selectedItems })
-    }).then(response => response.json())
-      .then(data => {
-        if (data.result === "success") {
-            alert('Order submitted successfully!');
-            resetCalculator();  // Optionally reset the form after submission
-        } else {
-            alert('Failed to submit order.');
-        }
-    }).catch(error => {
-        console.error('Error:', error);
-        alert('Failed to submit order.');
-    });
+  var totalElement = document.getElementById('total');
+  totalElement.textContent = '$' + total.toFixed(2); // Update the total on the page
 }
 
+function submitOrder() {
+  var nameInput = document.getElementById('name');
+  if (!nameInput || nameInput.value.trim() === '') {
+    alert('Please enter a name.');
+    return;
+  }
+  var name = nameInput.value.trim();
 
+  var selectedItems = [];
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  checkboxes.forEach(function(checkbox) {
+    var itemName = checkbox.nextElementSibling.textContent;
+    var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
+    var quantity = parseInt(quantityInput.value, 10);
+    var price = parseFloat(checkbox.value);
+    selectedItems.push({
+      name: itemName.trim(),
+      quantity: quantity,
+      price: price
+    });
+  });
+
+  var total = parseFloat(document.getElementById('total').textContent.substring(1));
+  var commission = (total * 0.15).toFixed(2);
+
+  var discordWebhookURL = 'https://discord.com/api/webhooks/1230691479316332586/v0F0gtfhrZcG0p_kY5DtwdKHsA6q8mRWrN_eP6SpxqNanRPRtFXVlutQvbT5zdm8RX96';
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', discordWebhookURL, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 204 || (xhr.status >= 200 && xhr.status < 300)) {
+        alert('Order submitted successfully!');
+      } else {
+        alert('Failed to submit the order. Please try again.');
+      }
+    }
+  };
+
+  var embedDescription = selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
+  var message = JSON.stringify({
+    content: 'New order!',
+    embeds: [{
+      title: 'Order Details',
+      description: embedDescription,
+      color: 5814783,
+      fields: [
+        { name: 'Name', value: name, inline: true },
+        { name: 'Total', value: `$${total.toFixed(2)}`, inline: true },
+        { name: 'Commission (15%)', value: `$${commission}`, inline: true }
+      ]
+    }]
+  });
+
+  xhr.send(message);
+}
 
 function resetCalculator() {
-    // Add logic to reset the form and any displayed totals or selections
-    document.querySelectorAll('input[type="number"]').forEach(input => input.value = 1);
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
-    document.getElementById('total').textContent = '$0.00';
-    document.getElementById('name').value = '';
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  var quantityInputs = document.querySelectorAll('input[type="number"]');
+  
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = false;
+  });
+  
+  quantityInputs.forEach(function(quantityInput) {
+    quantityInput.value = 1;
+  });
+  
+  document.getElementById('total').textContent = '$0.00';
 }
 
-// Assume calculateTotal() exists or define it here
- function calculateTotal() {
-    var total = 0;
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-
-    checkboxes.forEach(function(checkbox) {
-        var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
-        var quantity = parseInt(quantityInput.value, 10);
-        var price = parseFloat(checkbox.value);
-        if (quantity > 0) {
-            total += quantity * price;
-        }
-    });
-
-    document.getElementById('total').textContent = '$' + total.toFixed(2);
+function submitAndReset() {
+  submitOrder();
+  // Adding a delay before reset to give some time for the order to be processed
+  setTimeout(resetCalculator, 2000);
 }
-
-

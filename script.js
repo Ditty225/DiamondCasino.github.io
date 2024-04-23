@@ -44,8 +44,9 @@ function submitOrder() {
   });
 
   var total = parseFloat(document.getElementById('total').textContent.substring(1));
+  
+  // Check if discount is applied
   var discountApplied = document.getElementById('discount-checkbox').checked;
-
   if (discountApplied) {
     total *= 0.85; // Apply 15% discount
   }
@@ -85,4 +86,23 @@ function submitOrder() {
   });
 
   xhr.send(message);
+}
+
+// Function to reset the calculator
+function resetCalculator() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  var quantityInputs = document.querySelectorAll('input[type="number"]');
+  
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = false;
+  });
+  
+  quantityInputs.forEach(function(quantityInput) {
+    quantityInput.value = 1;
+  });
+  
+  document.getElementById('total').textContent = '$0.00';
+
+  // Reset the discount checkbox
+  document.getElementById('discount-checkbox').checked = false;
 }

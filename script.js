@@ -102,7 +102,8 @@ function submitOrder() {
                 { name: 'Total', value: `$${total.toFixed(2)}`, inline: true },
                 { name: 'Discount Applied', value: discountApplied ? 'Yes (15% off)' : 'No', inline: true },
                 { name: 'Commission (15%)', value: `$${commission}`, inline: true },
-                { name: 'Voucher', value: voucherMessage, inline: false } // Add voucher usage field
+                { name: 'Voucher', value: window.zeroedTotal ? 'Employee voucher used: Yes' : 'Employee voucher used: No', inline: false }
+
             ]
         }]
     });

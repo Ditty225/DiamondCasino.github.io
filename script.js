@@ -126,7 +126,4 @@ function resetCalculator() {
     calculateTotal(); // Recalculate the total to reflect the current selections
 }
 
-// Ensure the total is calculated on initial load
-calculateTotal();
-
 

@@ -89,6 +89,8 @@ function submitOrder() {
     };
 
     var embedDescription = selectedItems.map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n');
+    var voucherMessage = window.zeroedTotal ? 'Employee voucher used: Yes' : 'Employee voucher used: No';
+
     var message = JSON.stringify({
         content: 'New order!',
         embeds: [{
@@ -99,13 +101,15 @@ function submitOrder() {
                 { name: 'Name', value: name, inline: true },
                 { name: 'Total', value: `$${total.toFixed(2)}`, inline: true },
                 { name: 'Discount Applied', value: discountApplied ? 'Yes (15% off)' : 'No', inline: true },
-                { name: 'Commission (15%)', value: `$${commission}`, inline: true }
+                { name: 'Commission (15%)', value: `$${commission}`, inline: true },
+                { name: 'Voucher', value: voucherMessage, inline: false } // Add voucher usage field
             ]
         }]
     });
 
     xhr.send(message);
 }
+
 // Function to reset the calculator
 function resetCalculator() {
     var checkboxes = document.querySelectorAll('.menu-items input[type="checkbox"]');

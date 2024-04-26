@@ -56,7 +56,7 @@ function submitOrder() {
   var total = parseFloat(document.getElementById('total').textContent.substring(1));
   
   // Check if discount is applied
-  var discountApplied = document.getElementById('discount-checkbox').checked;
+  var discountApplied = document.getElementById('apply-discount-button').checked;
   if (discountApplied) {
     total *= 0.85; // Apply 15% discount
   }

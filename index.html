@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #E3FDFD; /* A light aqua background */
+      background-color: #E3FDFD;
       color: #333;
       margin: 0;
       padding: 0;
@@ -25,8 +25,8 @@
       margin: 0 auto;
     }
     .menu-item {
-      background-color: #FFE0F0; /* A soft pink background for menu items */
-      border: 1px solid #FF61A6; /* A pink border for emphasis */
+      background-color: #FFE0F0;
+      border: 1px solid #FF61A6;
       padding: 10px;
       margin: 10px auto;
       border-radius: 8px;
@@ -41,7 +41,7 @@
       margin-left: 10px;
     }
     button {
-      background-color: #FF61A6; /* A vibrant pink for buttons */
+      background-color: #FF61A6;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -50,7 +50,7 @@
       cursor: pointer;
     }
     button:hover {
-      background-color: #FFC3A0; /* A light orange for hover effect */
+      background-color: #FFC3A0;
     }
     .button-container {
       display: flex;
@@ -59,18 +59,17 @@
     }
     .total-box {
       margin-top: 20px;
-      color: #FF9A8B; /* An orange-pink color for the total box text */
+      color: #FF9A8B;
     }
     .company-logo img {
       max-width: 50%;
       height: auto;
     }
-    /* Additional styles for headings and labels if needed */
     h1, h2 {
-      color: #FF61A6; /* Matching headings to button colors */
+      color: #FF61A6;
     }
     label {
-      color: #FF9A8B; /* Matching labels to total box text */
+      color: #FF9A8B;
     }
   </style>
 </head>
@@ -79,8 +78,7 @@
     <div class="company-logo">
       <img src="RexDinerLogo.png" alt="Rex's Diner Logo">
     </div>
-    
-  <h1>Rex's Diner Order Form</h1>
+    <h1>Rex's Diner Order Form</h1>
 
   <section class="menu-items">
     <h2>Lubricants</h2>
@@ -219,33 +217,26 @@
   </div>
 </section>
 
-  <div class="order-details">
-    <label for="name">Employee Name:</label>
-    <input type="text" id="name" name="name">
+    <div class="order-details">
+      <label for="name">Employee Name:</label>
+      <input type="text" id="name" name="name">
+    </div>
+
+    <div class="total-box">
+      <span>Total: $</span>
+      <span id="total">0.00</span>
+    </div>
+
+    <div class="button-container">
+      <button id="calculate-button">Calculate Total</button>
+      <button id="apply-discount-button">Apply Discount</button>
+      <button id="zero-total-button">Zero Total</button>
+      <button id="submit-order-button">Submit Order</button>
+      <button id="reset-button">Reset</button>
+    </div>
+
+    <script src="script.js"></script>
   </div>
-    
-
-
-<div class="total-box">
-  <span>Total: $</span>
-  <span id="total">0.00</span>
-</div>
-
-<button id="calculate-button">Calculate Total</button>
-<button id="apply-discount-button">Apply Discount</button>
-<button id="zero-total-button">Zero Total</button>
-<button id="submit-order-button">Submit Order</button>
-<button id="reset-button">Reset</button>
-    
-<div class="button-container">
-  <button onclick="submitOrder()">Submit Order</button> <!-- Ensures submitOrder is called -->
-  <button onclick="resetCalculator()">Reset</button>
-  
-</div>
-
-<script src="script.js"></script>
-
-
 </body>
 </html>
 

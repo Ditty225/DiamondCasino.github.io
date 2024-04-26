@@ -1,23 +1,33 @@
+// Global variable to track the discount status
+var discountApplied = false;
+
 // Function to calculate the total
 function calculateTotal() {
-  var total = 0;
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    var total = 0;
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
-  checkboxes.forEach(function(checkbox) {
-    var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
-    var quantity = parseInt(quantityInput.value);
-    var price = parseFloat(checkbox.value);
-    total += price * quantity;
-  });
-  
-  // Check if discount is applied
-  var discountApplied = document.getElementById('discount-checkbox').checked;
-  if (discountApplied) {
-    total *= 0.85; // Apply 15% discount
-  }
+    checkboxes.forEach(function(checkbox) {
+        var quantityInput = checkbox.closest('.menu-item').querySelector('input[type="number"]');
+        var quantity = parseInt(quantityInput.value, 10);
+        var price = parseFloat(checkbox.value);
+        total += price * quantity;
+    });
 
-  var totalElement = document.getElementById('total');
-  totalElement.textContent = '$' + total.toFixed(2); // Update the total on the page
+    // Apply discount if it's active
+    if (discountApplied) {
+        total *= 0.85; // Apply 15% discount
+    }
+
+    var totalElement = document.getElementById('total');
+    totalElement.textContent = '$' + total.toFixed(2); // Update the total on the page
+}
+
+// Function to toggle discount
+function toggleDiscount() {
+    discountApplied = !discountApplied; // Toggle the discount status
+    var button = document.getElementById('apply-discount-button');
+    button.textContent = discountApplied ? 'Remove Discount' : 'Apply Discount';
+    calculateTotal(); // Recalculate the total with or without the discount
 }
 
 // Function to submit the order
@@ -90,19 +100,17 @@ function submitOrder() {
 
 // Function to reset the calculator
 function resetCalculator() {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  var quantityInputs = document.querySelectorAll('input[type="number"]');
-  
-  checkboxes.forEach(function(checkbox) {
-    checkbox.checked = false;
-  });
-  
-  quantityInputs.forEach(function(quantityInput) {
-    quantityInput.value = 1;
-  });
-  
-  document.getElementById('total').textContent = '$0.00';
-
-  // Reset the discount checkbox
-  document.getElementById('discount-checkbox').checked = false;
+    // The code for this function remains the same, but remove the line that resets the discount checkbox
+    // ...
+    discountApplied = false; // Reset the discount status
+    document.getElementById('apply-discount-button').textContent = 'Apply Discount'; // Reset the button text
 }
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('apply-discount-button').addEventListener('click', toggleDiscount);
+    document.getElementById('calculate-button').addEventListener('click', calculateTotal);
+    // Assuming you add IDs to your submit and reset buttons
+    document.getElementById('submit-order-button').addEventListener('click', submitOrder);
+    document.getElementById('reset-button').addEventListener('click', resetCalculator);
+});

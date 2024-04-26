@@ -19,6 +19,7 @@ function calculateTotal() {
         total *= 0.85; // Apply 15% discount
     }
 
+    window.zeroedTotal = false; // Ensure zeroing out is reset when recalculating
     var totalElement = document.getElementById('total');
     totalElement.textContent = total.toFixed(2); // Update the total on the page
 }
@@ -36,6 +37,7 @@ function zeroTotal() {
     var totalElement = document.getElementById('total');
     totalElement.textContent = '0.00'; // Set the total display to 0.00
     alert('Total has been zeroed out for employee voucher.'); // Optional: alert to confirm the action
+    window.zeroedTotal = true; // Add a flag to indicate the total should be treated as zero
 }
 
 // Function to submit the order
@@ -62,6 +64,11 @@ function submitOrder() {
     });
 
     var total = parseFloat(document.getElementById('total').textContent);
+
+    // Check if the total was zeroed out
+    if (window.zeroedTotal) {
+        total = 0; // Override the total to zero if zeroedTotal flag is true
+    }
 
     var commission = (total * 0.15).toFixed(2);
 
@@ -103,27 +110,4 @@ function submitOrder() {
 // Function to reset the calculator
 function resetCalculator() {
     var checkboxes = document.querySelectorAll('.menu-items input[type="checkbox"]');
-    var quantityInputs = document.querySelectorAll('.menu-items input[type="number"]');
-
-    checkboxes.forEach(function(checkbox) {
-        checkbox.checked = false;
-    });
-
-    quantityInputs.forEach(function(quantityInput) {
-        quantityInput.value = 1;
-    });
-
-    discountApplied = false; // Reset the discount status
-    document.getElementById('apply-discount-button').textContent = 'Apply Discount'; // Reset the button text
-    calculateTotal(); // Recalculate the total to $0.00
-}
-
-// Set up the event listeners
-document.getElementById('apply-discount-button').addEventListener('click', toggleDiscount);
-document.getElementById('calculate-button').addEventListener('click', calculateTotal);
-document.getElementById('submit-order-button').addEventListener('click', submitOrder);
-document.getElementById('reset-button').addEventListener('click', resetCalculator);
-document.getElementById('zero-total-button').addEventListener('click', zeroTotal);
-
-// Ensure the total is calculated on initial load
-calculateTotal();
+    var quantityInputs

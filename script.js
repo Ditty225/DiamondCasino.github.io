@@ -19,7 +19,6 @@ function calculateTotal() {
         total *= 0.85; // Apply 15% discount
     }
 
-    window.zeroedTotal = false; // Ensure zeroing out is reset when recalculating
     var totalElement = document.getElementById('total');
     totalElement.textContent = total.toFixed(2); // Update the total on the page
 }
@@ -126,7 +125,7 @@ function resetCalculator() {
 
     discountApplied = false; // Reset the discount status
     document.getElementById('apply-discount-button').textContent = 'Apply Discount'; // Reset the button text
-    window.zeroedTotal = false; // Reset the zeroed total flag
+    window.zeroedTotal = false; // Reset the zeroed total flag here only
     calculateTotal(); // Recalculate the total to $0.00
 }
 document.addEventListener('DOMContentLoaded', function() {

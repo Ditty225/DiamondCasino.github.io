@@ -31,6 +31,13 @@ function toggleDiscount() {
     calculateTotal(); // Recalculate the total with or without the discount
 }
 
+// Function to zero out the total
+function zeroTotal() {
+    var totalElement = document.getElementById('total');
+    totalElement.textContent = '0.00'; // Set the total display to 0.00
+    alert('Total has been zeroed out for employee voucher.'); // Optional: alert to confirm the action
+}
+
 // Function to submit the order
 function submitOrder() {
     var nameInput = document.getElementById('name');
@@ -116,6 +123,7 @@ document.getElementById('apply-discount-button').addEventListener('click', toggl
 document.getElementById('calculate-button').addEventListener('click', calculateTotal);
 document.getElementById('submit-order-button').addEventListener('click', submitOrder);
 document.getElementById('reset-button').addEventListener('click', resetCalculator);
+document.getElementById('zero-total-button').addEventListener('click', zeroTotal);
 
 // Ensure the total is calculated on initial load
 calculateTotal();

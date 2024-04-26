@@ -109,7 +109,7 @@ function submitOrder() {
 // Function to reset the calculator
 function resetCalculator() {
     var checkboxes = document.querySelectorAll('.menu-items input[type="checkbox"]');
-    var quantityInputs = document.querySelectorAll('.menu-items input[type="number"]');
+    var quantityInputs
 
     checkboxes.forEach(function(checkbox) {
         checkbox.checked = false;
@@ -126,17 +126,7 @@ function resetCalculator() {
     calculateTotal(); // Recalculate the total to reflect the current selections
 }
 
-// Set up the event listeners
-document.getElementById('apply-discount-button').addEventListener('click', toggleDiscount);
-document.getElementById('calculate-button').addEventListener('click', calculateTotal);
-document.getElementById('submit-order-button').addEventListener('click', submitOrder);
-document.getElementById('reset-button').addEventListener('click', resetCalculator);
-document.getElementById('zero-total-button').addEventListener('click', zeroTotal);
-
 // Ensure the total is calculated on initial load
 calculateTotal();
 
-// Function to reset the calculator
-function resetCalculator() {
-    var checkboxes = document.querySelectorAll('.menu-items input[type="checkbox"]');
-    var quantityInputs
+

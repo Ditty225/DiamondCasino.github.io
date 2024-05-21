@@ -1,10 +1,25 @@
-// Global variable to track the discount status
+// Global variables to track the discount and combo meals status
 var discountApplied = false;
+var selectedCombos = [];
+
+// Define combo meals
+var comboMeals = [
+    {
+        name: 'Combo 1',
+        price: 1000,
+        items: ['Steak Chargers', 'Fries', 'Shake of choice']
+    },
+    {
+        name: 'Combo 2',
+        price: 1500,
+        items: ['Burger', 'Onion Rings', 'Soft Drink']
+    },
+    // Add more combos as needed
+];
 
 // Function to calculate the total
 function calculateTotal() {
     var total = 0;
-    // Select all checked checkboxes within the menu-items section
     var checkboxes = document.querySelectorAll('.menu-items input[type="checkbox"]:checked');
 
     checkboxes.forEach(function(checkbox) {
@@ -12,6 +27,11 @@ function calculateTotal() {
         var quantity = parseInt(quantityInput.value, 10);
         var price = parseFloat(checkbox.value);
         total += price * quantity;
+    });
+
+    // Apply combo meal prices if any are selected
+    selectedCombos.forEach(function(combo) {
+        total += combo.price;
     });
 
     // Apply discount if it's active
@@ -39,6 +59,24 @@ function zeroTotal() {
     window.zeroedTotal = true; // Add a flag to indicate the total should be treated as zero
 }
 
+// Function to toggle combo meal
+function toggleComboMeal(comboName) {
+    var combo = comboMeals.find(function(c) { return c.name === comboName; });
+    if (!combo) return;
+
+    var comboIndex = selectedCombos.indexOf(combo);
+    if (comboIndex === -1) {
+        selectedCombos.push(combo);
+    } else {
+        selectedCombos.splice(comboIndex, 1);
+    }
+
+    var button = document.getElementById(`combo-${comboName.replace(/\s+/g, '-')}-button`);
+    button.textContent = comboIndex === -1 ? `Remove ${combo.name}` : `Add ${combo.name}`;
+
+    calculateTotal(); // Recalculate the total with or without the combo meal
+}
+
 // Function to submit the order
 function submitOrder() {
     var nameInput = document.getElementById('name');
@@ -59,6 +97,17 @@ function submitOrder() {
             name: itemName.trim(),
             quantity: quantity,
             price: price
+        });
+    });
+
+    // Add combo meal items if any are selected
+    selectedCombos.forEach(function(combo) {
+        combo.items.forEach(function(item) {
+            selectedItems.push({
+                name: item,
+                quantity: 1,
+                price: combo.price / combo.items.length // Distribute combo meal price among items
+            });
         });
     });
 
@@ -124,10 +173,18 @@ function resetCalculator() {
     });
 
     discountApplied = false; // Reset the discount status
+    selectedCombos = []; // Reset the combo meals selection
     document.getElementById('apply-discount-button').textContent = 'Apply Discount'; // Reset the button text
+
+    comboMeals.forEach(function(combo) {
+        var button = document.getElementById(`combo-${combo.name.replace(/\s+/g, '-')}-button`);
+        button.textContent = `Add ${combo.name}`;
+    });
+
     window.zeroedTotal = false; // Reset the zeroed total flag here only
     calculateTotal(); // Recalculate the total to $0.00
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('apply-discount-button').addEventListener('click', toggleDiscount);
     document.getElementById('calculate-button').addEventListener('click', calculateTotal);
@@ -135,8 +192,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submit-order-button').addEventListener('click', submitOrder);
     document.getElementById('reset-button').addEventListener('click', resetCalculator);
 
+    comboMeals.forEach(function(combo) {
+        var button = document.createElement('button');
+        button.id = `combo-${combo.name.replace(/\s+/g, '-')}-button`;
+        button.textContent = `Add ${combo.name}`;
+        button.addEventListener('click', function() {
+            toggleComboMeal(combo.name);
+        });
+        document.getElementById('combo-meal-buttons').appendChild(button);
+    });
+
     calculateTotal(); // Ensure the total is calculated on initial load
 });
-
-
-
